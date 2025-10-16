@@ -17,7 +17,7 @@ jobs:
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
-          key: ${{ secrets.SSH_KEY }}
+          password: ${{ secrets.SSH_PASS }}
           port: ${{ secrets.SSH_PORT }}
           script: |
             rm -rf ~/app/staging && mkdir -p ~/app/staging
@@ -37,10 +37,11 @@ jobs:
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
-          key: ${{ secrets.SSH_KEY }}
+          password: ${{ secrets.SSH_PASS }}
+          port: ${{ secrets.SSH_PORT }}
           script: |
             cd ~/app/staging
             docker stop front-react-stg || true
             docker rm front-react-stg || true
             docker build -t front-react-stg .
-            docker run -d --name front-react-stg -p 80:3001 front-react-stg
+            docker run -d --name front-react-stg -p 3100:3000 front-react-stg
