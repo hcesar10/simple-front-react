@@ -20,7 +20,10 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           port: ${{ secrets.SSH_PORT }}
           script: |
-            rm -rf ~/app/production && mkdir -p ~/app/production
+            if [ -d ~/app/production ]; then
+              rm -rf ~/app/production
+            fi
+            mkdir -p ~/app/production
 
       - name: Copy files to remote production via SSH
         uses: appleboy/scp-action@v0.1.7
