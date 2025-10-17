@@ -44,4 +44,4 @@ jobs:
             docker stop front-react-prod || true
             docker rm front-react-prod || true
             docker build -t front-react-prod .
-            docker run -d --name front-react-prod -p 3000:3000 front-react-prod
+            docker run --restart=unless-stopped -d --name front-react-prod -p 3000:3000 front-react-prod
