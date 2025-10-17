@@ -44,4 +44,4 @@ jobs:
             docker stop front-react-stg || true
             docker rm front-react-stg || true
             docker build -t front-react-stg .
-            docker run -d --name front-react-stg -p 3100:3000 front-react-stg
+            docker run --restart=unless-stopped -d --name front-react-stg -p 3100:3000 front-react-stg
